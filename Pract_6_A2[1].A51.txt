@@ -1,0 +1,27 @@
+;Experiment No.:06(A-Write ALP to Interface Stepper Motor with 89C52 and Rotate the Stepper Motor in Wave Drive Stepping Anticlockwise Direction(360))
+;Name:CHINMAY SURESH CHAVAN
+;ROLL NO.:213073
+;Batch:C3
+;Date-20/03/2024
+
+   ORG 0000H
+   MOV P1,#00H   ;Configure Port 1 as Output
+L1:MOV P1,#08H   ;Move the value 08H to port P1 
+   ACALL DELAY   ;Call the delay subroutine
+   MOV P1,#04H   ;Move the value 04H to port P1
+   ACALL DELAY   ;Call the delay subroutine
+   MOV P1,#02H   ;Move the value 02H to port P1
+   ACALL DELAY   ;Call the delay subroutine
+   MOV P1,#01H   ;Move the value 01H to port P1
+   ACALL DELAY   ;Call the delay subroutine
+   SJMP L1       ;Continuously Loop
+   
+DELAY:MOV R1,#04H  ;Delay Subroutine
+   L4:MOV R2,#0FFH 
+   L5:MOV R3,#0FFH 
+   L6:DJNZ R3,L6   
+      DJNZ R2,L5   
+      DJNZ R1,L4  
+      RET         
+      END
+	

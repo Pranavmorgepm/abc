@@ -1,0 +1,28 @@
+;Experiment No.:06(B-Write ALP to Interface Stepper Motor with 89C52 and Rotate the Stepper Motor in Full Drive Stepping Anticlockwise Direction(180))
+;Name:CHINMAY SURESH CHAVAN
+;ROLL NO.:213073
+;Batch:C3
+;Date-20/03/2024
+
+   ORG 0000H
+   MOV P1,#00H   ;Configure Port 1 as Output	   
+L2:MOV R0,#25    ;Move R0 with 25D for 180	   
+L1:MOV P1,#03H   ;Move the value 03H to port P1 
+   ACALL DELAY   ;Call the delay subroutine
+   MOV P1,#0CH   ;Move the value 0CH to port P1
+   ACALL DELAY   ;Call the delay subroutine
+   MOV P1,#06H   ;Move the value 06H to port P1
+   ACALL DELAY   ;Call the delay subroutine
+   MOV P1,#09H   ;Move the value 09H to port P1
+   ACALL DELAY   ;Call the delay subroutine
+   DJNZ R0,L1	 ;Decrement until R0=0
+   SJMP L2       ;Continuously Loop  
+	
+DELAY:MOV R2,#04H  ;Delay Subroutine
+   L4:MOV R3,#0FFH 
+   L5:MOV R4,#0FFH 
+   L6:DJNZ R4,L6   
+      DJNZ R3,L5   
+      DJNZ R2,L4  
+      RET         
+      END
